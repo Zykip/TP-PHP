@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    {% block navbar %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav pull-right">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Page</a></li>
+        <li><a href="#">Link</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<script>
+$(window).scroll(function() {
+  if ($(document).scrollTop() > 50) {
+    $('nav').addClass('shrink');
+  } else {
+    $('nav').removeClass('shrink');
+  }
+});
+</script>
+
+    {% endblock %}
+    {% for template in templates %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ template.name }} {{ template.active ? '🆓' : '⭐' }}</h5>
+                <p class="card-text">{{ template.description }}</p>
+                <a href="#" class="btn  {{ template.premium ? 'btn-warning' : 'btn-primary' }}">Visit this {{ template.premium ? 'premium' : '' }} template</a>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}
